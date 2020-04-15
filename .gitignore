@@ -1,0 +1,8 @@
+*~
+.idea/*
+*.zip
+build/
+node_modules
+*.cred.json
+.nyc_output/
+.DS_Store

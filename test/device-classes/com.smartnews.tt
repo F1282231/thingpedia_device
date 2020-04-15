@@ -1,0 +1,42 @@
+class @com.smartnews
+{
+  import loader from @org.thingpedia.v2();
+  import config from @org.thingpedia.config.none();
+
+  list query top_articles(in opt count: Number #_[prompt="How many news do you want?"],
+    			  out news_id: String,
+                          out title: String,
+                          out link: Entity(tt:url),
+                          out date: Date,
+    			  out site_name: String)
+  #_[confirmation="top news on SmartNews"]
+  #_[formatted=[{type="rdl", webCallback="${link}", displayTitle= "${title}", displayText="Published Time: ${date}\nSource: ${site_name}\nContent: ${content}"}]]
+//  #_[formatted=[{type="text", text="Title: ${title}\nID: ${news_id}\nPublished Time: ${date}\nSource: ${site_name}\nLink:${link}"}]]
+  #[doc="get the top news from SmartNews"];
+
+  list query reading_list(out news_id: String,
+                          out title: String,
+                          out link: Entity(tt:url),
+                          out date: Date,
+    			  out site_name: String)
+  #_[confirmation="reading list on SmartNews"]
+  #_[formatted=[{type="rdl", webCallback="${link}", displayTitle= "${title}", displayText="ID: ${news_id}\nPublished Time: ${date}\nSource: ${site_name}"}]]
+  #[doc="get reading list from SmartNews"];
+
+  list query article(in req news_id: String,
+    			out article_id: String,
+                        out title: String,
+                        out link: Entity(tt:url),
+                        out date: Date,
+    			out site_name: String,
+    			out snippet: String)
+  #_[confirmation="a news article on SmartNews"]
+  #_[formatted=[{type="rdl", webCallback="${link}", displayTitle= "${title}", displayText="ID: ${news_id}\nPublished Time: ${date}\nSource: ${site_name}\nSnippet: ${snippet}"}]]
+  #[doc="get a specific news from SmartNews"];
+
+  action pocket(in req news_id: String)
+  #_[confirmation="pocket the news to the reading list"];
+
+  action drop(in req news_id: String)
+  #_[confirmation="drop the news from the reading list"];
+}

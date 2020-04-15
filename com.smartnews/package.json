@@ -1,0 +1,26 @@
+{
+  "name": "com.smartnews",
+  "version": "0.0.1",
+  "description": "SmartNews Thingpedia Device",
+  "author": "Elvis Yu-Jing Lin, Jack Wang, Emily Chang",
+  "contributors": [
+    {
+      "name": "Elvis Yu-Jing Lin",
+      "email": "elvisyjlin@gmail.com"
+    },
+    {
+      "name": "Jack Wang",
+      "email": "jack.wang@smartnews.com"
+    },
+    {
+      "name": "Emily Chang",
+      "email": "emilyjchang30@gmail.com"
+    }
+  ],
+  "main": "device.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "parse5": "^5.1.1"
+  },
+  "thingpedia-version": 19
+}
