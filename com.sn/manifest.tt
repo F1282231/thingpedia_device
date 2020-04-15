@@ -1,0 +1,4 @@
+class @com.sn {
+    import loader from @org.thingpedia.v2();
+    import config from @org.thingpedia.config.none();
+}
