@@ -1,4 +1,4 @@
-class @com.fee {
+class @com.faa {
     import loader from @org.thingpedia.v2();
     import config from @org.thingpedia.config.none();
 }

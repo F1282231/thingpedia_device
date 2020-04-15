@@ -1,6 +1,6 @@
 // -*- mode: js; indent-tabs-mode: nil; js-basic-offset: 4 -*-
 //
-// This file is part of com.sn
+// This file is part of com.faa
 //
 // Copyright 2020 Jack Wang <jackweijiawang@gmail.com>
 //
