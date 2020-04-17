@@ -1,0 +1,1 @@
+# thingpedia_device
