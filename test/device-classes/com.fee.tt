@@ -1,5 +1,0 @@
-class @com.fee
-#[version=-1] {
-  import loader from @org.thingpedia.v2();
-  import config from @org.thingpedia.config.none();
-}

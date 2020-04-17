@@ -53,14 +53,14 @@ module.exports = class SmartNewsDevice extends Tp.BaseDevice {
             (smartResponse) => {
             return smartResponse.map((response) => {
                 let smartArticle = JSON.parse(response);
-                let $ = cheerio.load(smartArticle['content']);
+                //let $ = cheerio.load(smartArticle['content']);
                 //let content = parsedHtml.body.textContent;
                 return {
                     title: smartArticle["title"],
                     link: smartArticle["link"],
                     date: new Date(smartArticle["pubDate"]),
                     site_name: smartArticle["siteName"],
-                    content: $("*").text()
+                    content: cheerio.load(smartArticle['content'])("p").text()
                 };
               });
             });
@@ -78,29 +78,21 @@ module.exports = class SmartNewsDevice extends Tp.BaseDevice {
             });
             return Promise.all(newsPromises);
         }).then((responses) => {
-            return responses.map((response) => {
-                console.log(response);
-                let jsonData = JSON.parse(response);
-                if (jsonData.error) {
-                    return {
-                        news_id: '',
-                        title: jsonData.error,
-                        link: '',
-                        date: '',
-                        site_name: ''
-                    }
-                } else {
-                    let article = jsonData;
-                    return {
-                        news_id: article["id"],
-                        title: article["title"],
-                        link: article["url"],
-                        date: new Date(article["publishedTimestamp"]*1000),
-                        site_name: article["site"]["name"]
-                    }
-                }
-            });
-        });
+            return responses.filter((response) => {
+                let newArray = JSON.parse(response);
+                return (newArray['articleViewStyle'] === 'SMART') && (newArray['title'] !== 'coronavirus_push_landingpage');
+              })}).then((filtered) => {
+                return filtered.map((item) => {
+                  let article = JSON.parse(item);
+                  return {
+                      news_id: article["id"].toString(),
+                      title: article["title"],
+                      link: article["url"],
+                      date: new Date(article["publishedTimestamp"]*1000),
+                      site_name: article["site"]["name"]
+                    };
+                  });
+                });
     }
 
     //connect SN API endpoint /pocket with POST request
